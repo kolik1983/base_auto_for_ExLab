@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
+
 # получает значения из консоли
 def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default='chrome',
@@ -16,6 +17,7 @@ def pytest_addoption(parser):
                      help="Choose language: 'ru' or 'en'")
     parser.addoption('--headless', action='store', default='None',
                      help="Open a browser invisible, without GUI is used by default")
+
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -41,7 +43,7 @@ def browser(request):
         browser = webdriver.Chrome(options=options)
 
         browser.set_window_size(width_window, height_window)
-        browser.implicitly_wait(10) # Не явное ожидание элементов 10 сек.
+        browser.implicitly_wait(10)  # Не явное ожидание элементов 10 сек.
 
     elif browser_name == "firefox":
 
@@ -64,8 +66,8 @@ def browser(request):
         if headless == 'true':
             options.add_argument('headless')
 
-        service = Service("C:\chromedriver\chromedriver_104.exe")
-        options.binary_location = "C:/Users/User/AppData/Local/Yandex/YandexBrowser/Application/browser.exe"
+        service = Service("102_chromedriver.exe")
+        options.binary_location = "C:/Users/erigo/AppData/Local/Yandex/YandexBrowser/Application/browser.exe"
 
         # // Отключение сообщений в консоли типа: USB: usb_device_handle...
         options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -89,8 +91,6 @@ def browser(request):
 # --height_window=(default='1080')
 
 '''
- 
-pytest -v -s  --tb=line --reruns 1  --browser_name=chrome --width_window=1024 --height_window=768
---language=ru --headless=true   test_product_page.py
+
+pytest -v -s  --tb=line --reruns 1  --browser_name=chrome --width_window=1920 --height_window=1080 --language=ru --headless=true test_1_page.py
 '''
-Footer
