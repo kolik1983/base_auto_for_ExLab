@@ -4,7 +4,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-
+from pages.base_page import BasePage
+from pages.all_locators.locators_for_test_lending_page import BaseLocators
 
 # получает значения из консоли
 def pytest_addoption(parser):
@@ -66,7 +67,7 @@ def browser(request):
         if headless == 'true':
             options.add_argument('headless')
 
-        service = Service("102_chromedriver.exe")
+        service = Service("104chromedriver.exe")
         options.binary_location = "C:/Users/erigo/AppData/Local/Yandex/YandexBrowser/Application/browser.exe"
 
         # // Отключение сообщений в консоли типа: USB: usb_device_handle...
@@ -82,6 +83,15 @@ def browser(request):
     print("\nquit browser..")
     browser.quit()
 
+@pytest.fixture(scope='function')
+def open_url(browser):
+    BasePage(browser, BaseLocators.LENDING_LINK).open()
+
+
+
+
+
+
 
 # Supports console options (pytest):
 # --browser_name= (firefox or chrome or yandex)
@@ -91,6 +101,6 @@ def browser(request):
 # --height_window=(default='1080')
 
 '''
-
-pytest -v -s  --tb=line --reruns 1  --browser_name=chrome --width_window=1920 --height_window=1080 --language=ru --headless=true test_1_page.py
+pytest -v -s  --tb=line --reruns 0  --browser_name=chrome --width_window=1920 --height_window=1080 --language=ru --headless=None test_all_project.py
+pytest -v -s  --tb=line --reruns 1  --browser_name=yandex --width_window=1920 --height_window=1080 --language=ru --headless=true test_all_project.py
 '''
