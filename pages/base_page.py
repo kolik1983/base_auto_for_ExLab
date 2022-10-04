@@ -4,13 +4,13 @@ import sys
 import argparse
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver import Remote as RemoteWebDriver
+from selenium.webdriver import Remote as RemoteWebDriver, ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from .all_locators.locators_for_test_lending_page import BaseLocators
 from colorama import init
-from  colorama  import  Fore,  Style
+from colorama import Fore, Style
 import time
 
 # Родительский класс
@@ -25,10 +25,28 @@ class BasePage():
         self.browser.delete_all_cookies()  # Удоляем все куки
         self.browser.get(self.url)
 
+    def find(self, timeout=10):
+        """ Find element on the page. """
+        element = None
+        try:
+            element = WebDriverWait(self.browser, timeout).until(
+               EC.presence_of_element_located(self.url)
+            )
+        except:
+            print('Element not found on the page!')
+        return element
+
     def is_element_present(self, how, what):
         try:
             WebDriverWait(self, 20).until(EC.presence_of_element_located((how, what)))
-        except (TimeoutException):
+        except TimeoutException:
+            return False
+        return True
+
+    def is_visible(self, how, what):
+        try:
+            WebDriverWait(self, 20).until(EC.visibility_of_element_located((how, what)))
+        except TimeoutException:
             return False
         return True
 
@@ -43,3 +61,4 @@ class BasePage():
         except (NoSuchElementException):
             return False
         return True
+
