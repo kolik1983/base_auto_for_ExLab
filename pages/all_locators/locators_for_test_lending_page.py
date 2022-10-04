@@ -8,3 +8,7 @@ class HeadersLendingPageLocators():
     LOGO_PIC_EXLAB = (By.XPATH, '//div[@class="sc-jqUVSM EnPDN"]')
     HEADER_LINK_ABOUT = (By.XPATH, '//a[@data-scroll-to="#about"]')
     HEADER_LINK_PROJECTS = (By.XPATH, '//a[@data-scroll-to="#projects"]')
+    SWITCH_WHITE_THEME = (By.XPATH, '//div[@class="sc-fnykZs fEkGUM"]')
+    PARAGRAPH_ABOUT = (By.XPATH, '//div[@id="about"]')
+
+
