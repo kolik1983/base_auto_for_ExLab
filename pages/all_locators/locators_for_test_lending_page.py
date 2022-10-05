@@ -11,6 +11,7 @@ class HeadersLendingPageLocators():
     SWITCH_WHITE_THEME = (By.XPATH, '//div[@class="sc-fnykZs fEkGUM"]')
     PARAGRAPH_ABOUT = (By.XPATH, '//div[@id="about"]')
     PARAGRAPH_PROJECT = (By.XPATH, '//div[@id="projects"]')
+    HEADER_LINK_MENTORS = (By.XPATH, '//a[@data-scroll-to="#mentors"]')
     
     
 
