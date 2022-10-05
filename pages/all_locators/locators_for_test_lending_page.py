@@ -5,7 +5,7 @@ class BaseLocators():
 
 class HeadersLendingPageLocators():
     HEADER_LENDING = (By.XPATH, '//div[@id="header"]')
-    LOGO_PIC_EXLAB = (By.XPATH, '//div[@class="sc-jqUVSM EnPDN"]')
+    LOGO_PIC_EXLAB = (By.XPATH, '(//div[@id="logo_mobile"])[1]')
     HEADER_LINK_ABOUT = (By.XPATH, '//a[@data-scroll-to="#about"]')
     HEADER_LINK_PROJECTS = (By.XPATH, '//a[@data-scroll-to="#projects"]')
     SWITCH_WHITE_THEME = (By.XPATH, '//div[@class="sc-fnykZs fEkGUM"]')
