@@ -1,9 +1,8 @@
-
 import time
 import pytest
-from .pages.test_lending_page import TestLandingPage
+from pages.test_lending_page import TestLanding
 
 
-class TestLandingHomePage():
-        def visit_home_page(self):
-            self.test_open_my_page()
+class TestLandingPage():
+    def visit_home_page(self):
+        self.test_open_my_page()
