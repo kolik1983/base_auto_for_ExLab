@@ -25,16 +25,16 @@ class BasePage():
         self.browser.delete_all_cookies()  # Удоляем все куки
         self.browser.get(self.url)
 
-    def find(self, timeout=10):
-        """ Find element on the page. """
-        element = None
-        try:
-            element = WebDriverWait(self.browser, timeout).until(
-               EC.presence_of_element_located(self.url)
-            )
-        except:
-            print('Element not found on the page!')
-        return element
+    # def find(self, timeout=10):
+    #     """ Find element on the page. """
+    #     element = None
+    #     try:
+    #         element = WebDriverWait(self.browser, timeout).until(
+    #            EC.presence_of_element_located(self.url)
+    #         )
+    #     except:
+    #         print('Element not found on the page!')
+    #     return element
 
     def is_element_present(self, how, what):
         try:
@@ -49,8 +49,6 @@ class BasePage():
         except TimeoutException:
             return False
         return True
-
-
 
     # Если элемент кликабельный, возвращаем True,
     # иначе - перехватываем ошибку 'NoSuchElementException'
