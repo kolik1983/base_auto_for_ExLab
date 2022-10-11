@@ -13,7 +13,3 @@ class HeadersLendingPageLocators():
     PARAGRAPH_PROJECT = (By.XPATH, '//div[@id="projects"]')
     HEADER_LINK_MENTORS = (By.XPATH, '//a[@data-scroll-to="#mentors"]')
     PARAGRAPH_MENTORS = (By.XPATH, '//*[@id="mentors"]/div[1]')
-
-    
-
-
