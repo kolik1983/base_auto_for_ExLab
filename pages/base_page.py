@@ -60,3 +60,23 @@ class BasePage():
             return False
         return True
 
+    def move_to_element(self, browser, how, what):
+        # Переход до нужного элемента
+
+        element = browser.find_element(how, what)
+        actions = ActionChains(browser)
+        actions.move_to_element(element).perform()
+
+    def scroll_to_element(self, browser, how, what):
+       # Скролл до элемента
+        element = browser.find_element(how, what)
+        browser.execute_script("arguments[0].scrollIntoView();", element)
+
+    def scroll_down(self, browser):
+        # ?Скролл вниз
+        browser.execute_script("window.scrollBy(0,800)", "")
+
+
+    def get_current_url(self):
+        # Возвращает текущий URL
+        return self.browser.current_url
