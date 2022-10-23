@@ -26,7 +26,7 @@ from .base_page import BasePage
 # @allure.feature('Logo_test')
 # @allure.story('Проверка отображения логотипа ExLab')
 # def test_logo_exlab(self, browser, open_url):
-#     assert BasePage.is_visible(browser, *HeadersLocators.LOGO_PIC_EXLAB), 'Логотип отсутсвует'
+#     assert BasePage.is_visible(browser, *HeadersLocators.LOGO_PIC_EXLAB), 'Логотип отсутствует'
 #
 # @allure.feature('About_test')
 # @allure.story('Проверка отображения пункта "О нас" в хедере')
@@ -185,23 +185,116 @@ from .base_page import BasePage
     #     browser.switch_to.window(browser.window_handles[1])
     #     assert browser.current_url == BaseLocators.REGISTRATION_BOT
     #
-class TestProjectBlock():
-    #
-    # @allure.feature('Project_block_tests')
-    # @allure.story('Отображение заголовка Проекты')
-    # def test_visible_title_project(self, browser, open_url):
-    #     BasePage.scroll_to_element(self, browser, *AllProjectBlock.TITLE_PROJECT)
-    #     assert BasePage.is_visible(browser, *AllProjectBlock.TITLE_PROJECT), 'Нет заголовка Проекты'
+# class TestProjectBlock():
+#
+#     @allure.feature('Project_block_tests')
+#     @allure.story('Отображение заголовка Проекты')
+#     def test_visible_title_project(self, browser, open_url):
+#         BasePage.scroll_to_element(self, browser, *AllProjectBlock.TITLE_PROJECT)
+#         assert BasePage.is_visible(browser, *AllProjectBlock.TITLE_PROJECT), 'Нет заголовка Проекты'
+#
+#     @allure.feature('Project_block_tests')
+#     @allure.story('Отображение логотипов ExLab, HealthyLife, Easyhelp в блоке')
+#     """тест методом параметаризации, выдает ошибку, не принимает values"""
+#     @pytest.mark.parametrize(
+#         "logo",
+#         [*AllProjectBlock.PIC_EXLAB, *AllProjectBlock.PIC_HL, *AllProjectBlock.PIC_EH]
+#         )
+#     def test_visible_logo_all_projects(self, browser, open_url, logo):
+#         BasePage.scroll_to_element(self, browser, logo)
+#         assert BasePage.is_visible(browser, logo)
+#
+#     def test_visible_logo_all_projects(self, browser, open_url):
+#         BasePage.scroll_to_element(self, browser, *AllProjectBlock.TITLE_PROJECT)
+#         assert BasePage.is_visible(browser, *AllProjectBlock.THREE_LOGO)
+#
+#     @allure.feature('Project_block_tests')
+#     @allure.story('Отображение текста под логотипами ExLab, HealthyLife, Easyhelp в блоке')
+#     def test_visible_text_block_projects(self, browser, open_url):
+#         BasePage.scroll_to_element(self, browser, *AllProjectBlock.TITLE_PROJECT)
+#         assert BasePage.is_visible(browser, *AllProjectBlock.THREE_TEXT_BLOCK)
 
-    @allure.feature('Project_block_tests')
-    @allure.story('Отображение логотипов ExLab, HealthyLife, Easyhelp в блоке')
-    @pytest.mark.parametrize(
-        "logo",
-        [*AllProjectBlock.PIC_EXLAB, *AllProjectBlock.PIC_HL, *AllProjectBlock.PIC_EH]
-        )
-    def test_visible_logo_all_projects(self, browser, open_url, logo):
-        BasePage.scroll_to_element(self, browser, logo)
-        assert BasePage.is_visible(browser, logo)
+class TestMentorsBlock():
+    # @allure.feature('Mentors_block_tests')
+    # @allure.story('Отображение надписи Менторы')
+    # def test_visible_title_mentors(self, browser, open_url):
+    #     BasePage.scroll_to_element(self, browser, *MentorsBlock.TITLE_MENTORS)
+    #     assert BasePage.is_visible(browser, *MentorsBlock.TITLE_MENTORS), 'Не отображается заголовок блока Менторы'
+    #
+    # @allure.feature('Mentors_block_tests')
+    # @allure.story('Отображение надписи Менторы')
+    # def test_open_area_mentor(self, browser, open_url):
+    #     BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+    #     browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+    #     assert BasePage.is_visible(browser, *MentorsBlock.SPOILER_MENTOR), 'Описание ментора не открылась'
+    #
+    # """пока не реализован нормальный локатор, before/after"""
+    # """"@allure.feature('Mentors_block_tests')
+    # @allure.story('- При нажатии на область ментора , знак "+" меняется на "-"')
+    # def test_change_sing_in_area_mentor(self, browser, open_url):
+    #     BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+    #     browser.find_element(*MentorsBlock.AREA_MENTOR1).click()"""
+    #
+    # @allure.feature('Mentors_block_tests')
+    # @allure.story('При открытом спойлере фотография ментора отображается')
+    # def test_visible_photo_mentor(self, browser, open_url):
+    #     BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+    #     browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+    #     assert BasePage.is_visible(browser, *MentorsBlock.PHOTOS_MENTORS), 'Фото менторов не отображается'
+    #
+    # @allure.feature('Mentors_block_tests')
+    # @allure.story('При открытом спойлере отображается информации о менторе')
+    # def test_visible_descriptions_mentor(self, browser, open_url):
+    #     BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+    #     browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+    #     assert BasePage.is_visible(browser, *MentorsBlock.DESCRIPTIONS_MENTORS), 'Описание менторов не видно'
+    #
+    # @allure.feature('Mentors_block_tests')
+    # @allure.story('При нажатии на область ментора (при развернутом спойлере) спойлер закрывается')
+    def test_close_spoiler(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+        browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+        browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+        assert BasePage.is_visible(browser, *MentorsBlock.CLOSE_AREA)
+
+    # @allure.feature('Mentors_block_tests')НЕТ ЛОКАТОРА 3 теста минус
+    # @allure.story('Отображение  кнопки [Стать ментором]')
+    # def test_visible_become_ment_btn(self, browser, open_url):
+    #     BasePage.scroll_to_element(self, browser, )
+
+# class TestStartUpBlock():
+#
+#     @allure.feature('Startup_block_tests')
+#     @allure.story('Отображение надписи StartUp для ')
+#     def test_visible_startup_title(self, browser, open_url):
+#         BasePage.scroll_to_element(self, browser, *StartUpBlock.TITLE_STARTUP)
+#         assert BasePage.is_visible(browser, *StartUpBlock.TITLE_STARTUP), 'Не видно заголовок блока StartUp'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
