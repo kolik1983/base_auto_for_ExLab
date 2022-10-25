@@ -80,3 +80,13 @@ class BasePage():
     def get_current_url(self):
         # Возвращает текущий URL
         return self.browser.current_url
+
+    def element_to_be_clickable(self, how, what):
+        # Ожидает пока элемент не станет кликабельным
+        try:
+            WebDriverWait(self, 20).until(EC.element_to_be_clickable((how, what)))
+        except TimeoutException:
+            return False
+        return True
+
+
