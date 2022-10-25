@@ -36,13 +36,34 @@ class AllProjectBlock():
     PIC_EXLAB = (By.XPATH, '//img[@alt="ExLab"]')
     PIC_HL = (By.XPATH, '//img[@alt="Healthy life "]')
     PIC_EH = (By.XPATH, '//img[@alt="Easyhelp "]')
+    THREE_LOGO = (By.XPATH, '//img[@class="sc-bBXxYQ hEflMO"]')
+    THREE_TEXT_BLOCK = (By.XPATH, '//div[@class="sc-lbxAil jbFjXS"]/div/p')
+
+class MentorsBlock():
+    TITLE_MENTORS = (By.XPATH, '//div[@id="mentors"]/div[1]')
+    AREA_MENTOR1 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[1]')
+    AREA_MENTOR2 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[2]')
+    AREA_MENTOR3 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[3]')
+    AREA_MENTOR4 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[4]')
+    SPOILER_MENTOR = (By.XPATH, '//div[@class="sc-kIKDeO hGmlWc"]')
+    PHOTOS_MENTORS = (By.XPATH, '//img[@class="sc-hNKHps bLOuOe"]')
+    DESCRIPTIONS_MENTORS = (By.XPATH, '//ul[@class="sc-cZwWEu kmkvji"]')
+    CLOSE_AREA = (By.XPATH, '//div[@class="sc-kIKDeO hGmlWc"]')
+    # BUTTON_BEC_MENTOR = (By.XPATH, '') no locator)
+
+class StartUpBlock():
+
+    TITLE_STARTUP = (By.XPATH, '//div[@data-scroll-target="#startup"]')
 
 
 
 
 
 
-    INST = (By.XPATH, '//a[@href="https://www.instagram.com/exlab_startup/"]')
+
+
+
+    # INST = (By.XPATH, '//a[@href="https://www.instagram.com/exlab_startup/"]')
 
 
 
