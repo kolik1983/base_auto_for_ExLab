@@ -179,7 +179,7 @@ class TestAboutUsBlock():
 
     @allure.feature('AboutUs_block_tests')
     @allure.story('При нажатии на кнопку [Присоединиться] открывается форма регистрации')
-    def test_btn_join_clickable(self, browser, open_url):
+    def test_btn_join_click(self, browser, open_url):
         BasePage.scroll_to_element(self, browser, *AboutUsBlock.TEXT_UNDO_WHY)
         browser.find_element(*AboutUsBlock.JOIN_BTN).click()
         browser.switch_to.window(browser.window_handles[1])
@@ -248,3 +248,80 @@ class TestMentorsBlock():
         BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
         browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
         assert BasePage.is_visible(browser, *MentorsBlock.DESCRIPTIONS_MENTORS), 'Описание менторов не видно'
+
+
+    @allure.feature('Mentors_block_tests')
+    @allure.story('При нажатии на область ментора (при развернутом спойлере) спойлер закрывается')
+    def test_close_spoiler(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+        browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+        BasePage.element_to_be_clickable(browser, *MentorsBlock.AREA_MENTOR1)
+        browser.find_element(*MentorsBlock.AREA_MENTOR1).click()
+        BasePage.move_to_element(self, browser, *MentorsBlock.AREA_MENTOR1)
+        assert BasePage.is_visible(browser, *MentorsBlock.CLOSE_AREA) is False
+
+    @allure.feature('Mentors_block_tests')НЕТ ЛОКАТОРА 2 теста минус
+    @allure.story('Отображение  кнопки [Стать ментором]')
+    def test_visible_become_ment_btn(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, )
+
+class TestStartUpBlock():
+
+    @allure.feature('Startup_block_tests')
+    @allure.story('Отображение надписи StartUp')
+    def test_visible_startup_title(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *StartUpBlock.TITLE_STARTUP)
+        assert BasePage.is_visible(browser, *StartUpBlock.TITLE_STARTUP), 'Не видно заголовок блока StartUp'
+
+    @allure.feature('Startup_block_tests')
+    @allure.story('Отображение блока текста под StartUp')
+    def test_visible_txt_block(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *StartUpBlock.TITLE_STARTUP)
+        assert BasePage.is_visible(browser, *StartUpBlock.TEXT_BLOCK), 'Блок с текстом не отображается'
+
+
+class TestHelpProjectBlock():
+
+    @allure.feature('Help_block_tests')
+    @allure.story('Отображение надписи Помочь проекту')
+    def test_visible_title_help(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *HelpPjtBlock.TITLE_HELP)
+        assert BasePage.is_visible(browser, *HelpPjtBlock.TITLE_HELP), 'Надпись Помочь проекту не видна'
+
+    @allure.feature('Help_block_tests')
+    @allure.story('Отображение текста в блоке')
+    def test_visible_text_help(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *HelpPjtBlock.TITLE_HELP)
+        assert BasePage.is_visible(browser, *HelpPjtBlock.TEXT_HELP), 'Текст в блоке Помочь проекту не виден'
+
+    @allure.feature('Help_block_tests')
+    @allure.story('Отображение кнопки Boosty')
+    def test_visible_btn_boosty(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *HelpPjtBlock.BTN_BOOSTY)
+        assert BasePage.is_visible(browser, *HelpPjtBlock.BTN_BOOSTY), 'Кнопка Boosty не видна'
+
+    @allure.feature('Help_block_tests')
+    @allure.story('-При нажатии на кнопку Boosty открывается страница ExLab на сайте Boosty')
+    def test_btn_bsty_click(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *HelpPjtBlock.BTN_BOOSTY)
+        browser.find_element(*HelpPjtBlock.BTN_BOOSTY).click()
+        browser.switch_to.window(browser.window_handles[1])
+        assert browser.current_url == 'https://boosty.to/exlab_startup', 'Страница не открывается'
+
+    @allure.feature('Help_block_tests')
+    @allure.story('Отображение кнопки Patreon')
+    def test_visible_btn_patreon(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *HelpPjtBlock.BTN_PATREON)
+        assert BasePage.is_visible(browser, *HelpPjtBlock.BTN_PATREON), 'Кнопка Patreon не видна'
+
+    # не настроен переход на патреон
+    @pytest.mark.xfail
+    @allure.feature('Help_block_tests')
+    @allure.story('-При нажатии на кнопку Patreon открывается страница ExLab на сайте Patreon')
+    def test_btn_patreon_click(self, browser, open_url):
+        BasePage.scroll_to_element(self, browser, *HelpPjtBlock.BTN_PATREON)
+        browser.find_element(*HelpPjtBlock.BTN_PATREON).click()
+        browser.switch_to.window(browser.window_handles[1])
+        assert browser.current_url == BaseLocators.LINK_EX_BOOSTY, 'Страница не открывается'
+
+
