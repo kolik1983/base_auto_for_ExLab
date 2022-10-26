@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 class BaseLocators():
     LENDING_LINK = 'http://test.exlab.team/#'
     REGISTRATION_BOT = 'https://t.me/ExLab_registration_bot'
+    LINK_EX_BOOSTY = (By.XPATH, 'https://boosty.to/exlab_startup')
 
 class HeadersLocators():
     HEADER_LENDING = (By.XPATH, '//div[@id="header"]')
@@ -54,6 +55,15 @@ class MentorsBlock():
 class StartUpBlock():
 
     TITLE_STARTUP = (By.XPATH, '//div[@data-scroll-target="#startup"]')
+    TEXT_BLOCK = (By.XPATH, '//div[@class="sc-eKszNL gOjGBb"]')
+
+class HelpPjtBlock():
+
+    TITLE_HELP = (By.XPATH, '//div[@class="sc-jTYCaT NkTuJ"]/div[1]')
+    TEXT_HELP = (By.XPATH, '//div[@class="sc-fvNpTx eJpwBO"]')
+    BTN_BOOSTY = (By.XPATH, '//a[@href="https://boosty.to/exlab_startup"]')
+    BTN_PATREON = (By.XPATH, '//a[@class="sc-hKMtZM etdNbW"]')
+
 
 
 
