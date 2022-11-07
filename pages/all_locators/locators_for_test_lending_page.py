@@ -3,7 +3,8 @@ from selenium.webdriver.common.by import By
 class BaseLocators():
     LENDING_LINK = 'http://test.exlab.team/#'
     REGISTRATION_BOT = 'https://t.me/ExLab_registration_bot'
-    LINK_EX_BOOSTY = (By.XPATH, 'https://boosty.to/exlab_startup')
+    LINK_EX_BOOSTY = 'https://boosty.to/exlab_startup'
+    FUTTER = (By.XPATH, '//div[@class="sc-evrZIY hdIkLU"]')
 
 class HeadersLocators():
     HEADER_LENDING = (By.XPATH, '//div[@id="header"]')
@@ -30,7 +31,7 @@ class AboutUsBlock():
     TEXT_UNDO_TITLE = (By.XPATH, '//p[@class="sc-cCsOjp cdaqyF"]')
     TITLE_WHY = (By.XPATH, '//div[@class="sc-jdAMXn iDQeOI"]/div[1]')
     TEXT_UNDO_WHY = (By.XPATH, '//div[@class="sc-jdAMXn iDQeOI"]/ol')
-    JOIN_BTN = (By.XPATH, '//div[@class="sc-iTONeN egXhsc"]//a')
+    JOIN_BTN = (By.XPATH, '//div[@class="sc-iTONeN egXhsc"]/a')
 
 class AllProjectBlock():
     TITLE_PROJECT = (By.XPATH, '//div[@id="projects"]/div[1]')
@@ -41,16 +42,11 @@ class AllProjectBlock():
     THREE_TEXT_BLOCK = (By.XPATH, '//div[@class="sc-lbxAil jbFjXS"]/div/p')
 
 class MentorsBlock():
-    TITLE_MENTORS = (By.XPATH, '//div[@id="mentors"]/div[1]')
-    AREA_MENTOR1 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[1]')
-    AREA_MENTOR2 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[2]')
-    AREA_MENTOR3 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[3]')
-    AREA_MENTOR4 = (By.XPATH, '//div[@class="sc-jIAOiI kQWCrM"]/div[4]')
-    SPOILER_MENTOR = (By.XPATH, '//div[@class="sc-kIKDeO hGmlWc"]')
+    TITLE_MENTORS = (By.XPATH, '//div[@class="sc-jOhDuK jCfVZq"]')
+    SPOILERS_MENTOR = (By.XPATH, '//div[@class="sc-kIKDeO hGmlWc"]')
     PHOTOS_MENTORS = (By.XPATH, '//img[@class="sc-hNKHps bLOuOe"]')
     DESCRIPTIONS_MENTORS = (By.XPATH, '//ul[@class="sc-cZwWEu kmkvji"]')
     CLOSE_AREA = (By.XPATH, '//div[@class="sc-kIKDeO hGmlWc"]')
-    # BUTTON_BEC_MENTOR = (By.XPATH, '') no locator)
 
 class StartUpBlock():
 
@@ -64,16 +60,28 @@ class HelpPjtBlock():
     BTN_BOOSTY = (By.XPATH, '//a[@href="https://boosty.to/exlab_startup"]')
     BTN_PATREON = (By.XPATH, '//a[@class="sc-hKMtZM etdNbW"]')
 
+class SiTBlock():
+
+    TITLE_SiT = (By.XPATH, '//div[@class="sc-tsFYE tOJRS"]/div[1]')
+    TEXT_SiT = (By.XPATH, '//div[@class="sc-tsFYE tOJRS"]/div[2]')
+
+class FutterBlock():
+
+    LOGO_FUT_EXLAB = (By.XPATH, '//div[@class="sc-fIavCj fEzmxG"]')
+    TEXT_UNDER_LOGO = (By.XPATH, '//div[@class="sc-evrZIY hdIkLU"]')
+    LNKD = (By.XPATH, '//a[@href="https://www.linkedin.com/company/exlab-start-up/mycompany/"]')
+    URL_LNKD = 'https://www.linkedin.com/company/exlab-start-up/mycompany/'
+    INST = (By.XPATH, '//a[@href="https://www.instagram.com/exlab_startup/"]')
+    URL_INST = 'https://www.instagram.com/exlab_startup/'
+    TLGR = (By.XPATH, '//a[@href="https://t.me/ExLabChannel"]')
+    URL_TLGR = 'https://t.me/ExLabChannel'
+    YTB = (By.XPATH, '//a[@href="https://www.youtube.com/channel/UC-TAnVYVN7qg5dgsYQJkuvA"]')
+    URL_YTB = 'https://www.youtube.com/channel/UC-TAnVYVN7qg5dgsYQJkuvA'
+    EMAIL = (By.XPATH, '//a[@href="mailto:info@exlab.team"]')
 
 
 
 
-
-
-
-
-
-    # INST = (By.XPATH, '//a[@href="https://www.instagram.com/exlab_startup/"]')
 
 
 
