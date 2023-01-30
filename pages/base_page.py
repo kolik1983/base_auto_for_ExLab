@@ -1,18 +1,9 @@
-import requests
-import math
-import sys
-import argparse
-from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Remote as RemoteWebDriver, ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
-from selenium.webdriver.common.keys import Keys
-from .all_locators.locators_for_test_lending_page import BaseLocators
-from colorama import init
-from colorama import Fore, Style
-import time
+
 
 # Родительский класс
 class BasePage():
@@ -122,12 +113,11 @@ class BasePage():
             return False
         return True
 
-    def scroll_to_futter(self, browser):
+    def scroll_to_footer(self, browser):
 
         try:
-            browser.implicitly_wait(15)
-            footer = browser.find_element(By.TAG_NAME, 'html')
-            footer.send_keys(Keys.END)
+            footer = WebDriverWait(browser, 20).until(EC.element_to_be_clickable((By.ID, "html")))
+            browser.execute_script("arguments[0].scrollIntoView();", footer)
 
         except NoSuchElementException:
             return False
