@@ -3,12 +3,11 @@ import time
 import allure
 from allure_commons.types import AttachmentType
 import webbrowser
-from pages.all_locators.locators_for_test_lending_page import *
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
-
+from locators.locators_test_lending_page import *
 
 
 class TestHeaders():
@@ -133,8 +132,8 @@ class TestAboutUsBlock():
 
     @allure.feature('AboutUs_block_tests')
     @allure.story('Отображение надписи Почему ExLab?')
-    def test_visible_title_whyus(self,browser, open_url):
-        BasePage.scroll_to_element(self, browser, *AboutUsBlock.TITLE_WHY)
+    def test_visible_title_whyus(self, browser, open_url):
+        BasePage.move_to_element(self, browser, *AboutUsBlock.TITLE_WHY)
         assert BasePage.is_visible(browser,*AboutUsBlock.TITLE_WHY), 'Нет заголова "Почему ExLab?"'
 
     @allure.feature('AboutUs_block_tests')
@@ -165,15 +164,15 @@ class TestProjectBlock():
         BasePage.scroll_to_element(self, browser, *AllProjectBlock.TITLE_PROJECT)
         assert BasePage.is_visible(browser, *AllProjectBlock.TITLE_PROJECT), 'Нет заголовка Проекты'
 
-    # @allure.feature('Project_block_tests')
-    # @allure.story('Отображение логотипов ExLab, HealthyLife, Easyhelp в блоке')
-    # @pytest.mark.parametrize(
-    #     "logo",
-    #     [*AllProjectBlock.PIC_EXLAB, *AllProjectBlock.PIC_HL, *AllProjectBlock.PIC_EH]
-    #     )
-    # def test_visible_logo_all_projects(self, browser, open_url, logo):
-    #     BasePage.scroll_to_element(self, browser, logo)
-    #     assert BasePage.is_visible(browser, logo)
+    @allure.feature('Project_block_tests')
+    @allure.story('Отображение логотипов ExLab, HealthyLife, Easyhelp в блоке')
+    @pytest.mark.parametrize(
+        "logo",
+        [*AllProjectBlock.PIC_EXLAB, *AllProjectBlock.PIC_HL, *AllProjectBlock.PIC_EH]
+        )
+    def test_visible_logo_all_projects(self, browser, open_url, logo):
+        BasePage.scroll_to_element(self, browser, logo)
+        assert BasePage.is_visible(browser, logo)
 
     def test_visible_logo_all_projects(self, browser, open_url):
         BasePage.scroll_to_element(self, browser, *AllProjectBlock.TITLE_PROJECT)
@@ -189,13 +188,14 @@ class TestMentorsBlock():
     @allure.feature('Mentors_block_tests')
     @allure.story('Отображение надписи Менторы')
     def test_visible_title_mentors(self, browser, open_url):
+        browser.implicitly_wait(4)
         BasePage.scroll_to_element(self, browser, *MentorsBlock.TITLE_MENTORS)
         assert BasePage.is_visible(browser, *MentorsBlock.TITLE_MENTORS), 'Не отображается заголовок блока Менторы'
 
     @allure.feature('Mentors_block_tests')
     @allure.story('При нажатии на область ментора , открывается спойлер')
     def test_open_area_mentor(self, browser, open_url):
-        browser.implicitly_wait(2)
+        browser.implicitly_wait(4)
         BasePage.scroll_to_element(self, browser, *HeadersLocators.PARAGRAPH_MENTORS)
         BasePage.open_spoilers(self, browser, *MentorsBlock.TITLE_MENTORS)
         assert len(browser.find_elements(*MentorsBlock.SPOILERS_MENTOR)) == 4, "Не все спойлеры открылись"
@@ -219,17 +219,19 @@ class TestMentorsBlock():
     @allure.feature('Mentors_block_tests')
     @allure.story('При нажатии на область ментора (при развернутом спойлере) спойлер закрывается')
     def test_close_spoiler(self, browser, open_url):
-        browser.implicitly_wait(2)
+        browser.implicitly_wait(4)
         BasePage.scroll_to_element(self, browser, *HeadersLocators.PARAGRAPH_MENTORS)
-        BasePage.open_spoilers(self, browser, *MentorsBlock.TITLE_MENTORS)
-        BasePage.open_spoilers(self, browser, *MentorsBlock.TITLE_MENTORS)
-        assert len(browser.find_elements(*MentorsBlock.SPOILERS_MENTOR)) == 0, "Не все спойлеры закрылись"
+        BasePage.open_spoilers(self, browser, *MentorsBlock.CLOSE_AREA)
+        BasePage.open_spoilers(self, browser, *MentorsBlock.CLOSE_AREA)
+        BasePage.scroll_to_element(self, browser, *HeadersLocators.PARAGRAPH_MENTORS)
+        assert len(browser.find_elements(*MentorsBlock.HIDDEN_AREA)) == 0, "Не все спойлеры закрылись"
 
 class TestStartUpBlock():
 
     @allure.feature('Startup_block_tests')
     @allure.story('Отображение надписи StartUp')
     def test_visible_startup_title(self, browser, open_url):
+        browser.implicitly_wait(2)
         BasePage.scroll_to_element(self, browser, *StartUpBlock.TITLE_STARTUP)
         assert BasePage.is_visible(browser, *StartUpBlock.TITLE_STARTUP), 'Не видно заголовок блока StartUp'
 
@@ -245,12 +247,14 @@ class TestHelpProjectBlock():
     @allure.feature('Help_block_tests')
     @allure.story('Отображение надписи Помочь проекту')
     def test_visible_title_help(self, browser, open_url):
+        browser.implicitly_wait(2)
         BasePage.scroll_to_element(self, browser, *HelpPjtBlock.TITLE_HELP)
         assert BasePage.is_visible(browser, *HelpPjtBlock.TITLE_HELP), 'Надпись Помочь проекту не видна'
 
     @allure.feature('Help_block_tests')
     @allure.story('Отображение текста в блоке')
     def test_visible_text_help(self, browser, open_url):
+        browser.implicitly_wait(2)
         BasePage.scroll_to_element(self, browser, *HelpPjtBlock.TITLE_HELP)
         assert BasePage.is_visible(browser, *HelpPjtBlock.TEXT_HELP), 'Текст в блоке Помочь проекту не виден'
 
@@ -301,10 +305,11 @@ class TestStayInTouch:
         assert BasePage.is_visible(browser, *SiTBlock.TEXT_SiT), "Текста блока нет"
 
 class TestFutterBlock():
+
     @allure.feature('SiT_block_tests')
     @allure.story('Отображение логотипа ExLab')
     def test_visible_logo_fut(self, browser, open_url):
-        browser.implicitly_wait(4)
+        browser.implicitly_wait(5)
         BasePage.scroll_to_element(self, browser, *FutterBlock.LOGO_FUT_EXLAB)
         assert BasePage.is_visible(browser, *FutterBlock.LOGO_FUT_EXLAB), "Логотип не отображается"
 
@@ -388,7 +393,4 @@ class TestFutterBlock():
         browser.implicitly_wait(5)
         BasePage.scroll_to_element(self, browser, *FutterBlock.EMAIL)
         assert BasePage.is_visible(browser, *FutterBlock.EMAIL), "Ссылка email не от отображается"
-
-
-
 
